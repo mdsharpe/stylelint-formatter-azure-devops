@@ -1,0 +1,24 @@
+{
+    "name": "stylelint-formatter-azure-devops",
+    "version": "0.0.1",
+    "description": "Stylelint formatter for Azure Devops",
+    "main": "lib/index.js",
+    "scripts": {
+        "build": "tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mdsharpe/stylelint-formatter-azure-devops.git"
+    },
+    "author": "Matt Sharpe",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/mdsharpe/stylelint-formatter-azure-devops/issues"
+    },
+    "homepage": "https://github.com/mdsharpe/stylelint-formatter-azure-devops#readme",
+    "devDependencies": {
+        "@tsconfig/node-lts": "^18.12.1",
+        "stylelint": "^14.16.1",
+        "typescript": "^4.9.4"
+    }
+}
