@@ -16,7 +16,7 @@ const formatter: Formatter = (results, _): string => {
     const warnings = results.flatMap(result =>
         result.warnings.map(warning => ({
             source: result.source,
-            warning: warning
+            warning
         })));
 
     const formattedResults = warnings.map(warning => formatMessage(warning.warning, warning.source));
