@@ -16,10 +16,10 @@ const formatter: Formatter = (results, _): string => {
     const warnings = results.flatMap(result =>
         result.warnings.map(warning => ({
             source: result.source,
-            text: warning.text
+            warning: warning
         })));
 
-    const formattedResults = warnings.map(warning => formatMessage());
+    const formattedResults = warnings.map(warning => formatMessage(warning.warning, warning.source));
 
     return formattedResults.join(EOL);
 };
