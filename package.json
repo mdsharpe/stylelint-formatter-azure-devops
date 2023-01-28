@@ -6,7 +6,8 @@
     "scripts": {
         "build": "tsc",
         "test": "jasmine",
-        "lint": "eslint **/*.ts"
+        "lint": "eslint **/*.ts",
+        "prettier": "prettier --write ."
     },
     "repository": {
         "type": "git",
