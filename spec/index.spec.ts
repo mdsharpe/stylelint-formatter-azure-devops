@@ -1,5 +1,5 @@
 import { EOL } from 'os';
-import { LinterResult, LintResult } from 'stylelint';
+import { type LinterResult, type LintResult } from 'stylelint';
 import formatter from '../src/index';
 
 const linterResult: LinterResult = { cwd: '', results: [], errored: false, output: null, reportedDisables: [], ruleMetadata: {} };

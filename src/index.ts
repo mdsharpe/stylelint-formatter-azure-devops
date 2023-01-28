@@ -1,5 +1,5 @@
 import { EOL } from 'os';
-import { Formatter } from 'stylelint';
+import { type Formatter } from 'stylelint';
 import formatMessage from './formatMessage';
 
 const formatter: Formatter = (results, _): string => {
