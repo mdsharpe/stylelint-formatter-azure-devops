@@ -1,4 +1,5 @@
 import { type Warning } from 'stylelint';
+
 import formatMessage from '../src/formatMessage';
 
 const VSO_LOGISSUE_TASK_PREFIX = '##vso[task.logissue';
