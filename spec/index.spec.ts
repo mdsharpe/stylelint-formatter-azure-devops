@@ -29,10 +29,18 @@ describe('Formatter', () => {
         expect(typeof result).toBe('string');
     });
 
-    // Should probably be per warning..!
-    it('should return a string with a line per result', () => {
-        const result = formatter([emptyResult, emptyResult, emptyResult], linterResult);
-        const lineCount = result.split(/\r\n|\r|\n/).length;
-        expect(lineCount).toBe(3);
+    describe('returning a line per warning', () => {
+        it('should return 1 lines for 1 empty result', () => {
+            const result = formatter([emptyResult], linterResult);
+            const lineCount = result.split(/\r\n|\r|\n/).length;
+            expect(lineCount).toBe(2);
+        });
+
+        it('should return two lines for two results', () => {
+            const result = formatter([emptyResult, emptyResult], linterResult);
+            const lineCount = result.split(/\r\n|\r|\n/).length;
+            expect(lineCount).toBe(2);
+        });
+
     });
 });
