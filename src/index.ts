@@ -8,19 +8,24 @@ const formatter: Formatter = (results, _): string => {
         return '';
     }
 
-    results = results.filter(o => Array.isArray(o.warnings) && o.warnings.length > 0);
+    results = results.filter(
+        (o) => Array.isArray(o.warnings) && o.warnings.length > 0
+    );
 
     if (results.length === 0) {
         return '';
     }
 
-    const warnings = results.flatMap(result =>
-        result.warnings.map(warning => ({
+    const warnings = results.flatMap((result) =>
+        result.warnings.map((warning) => ({
             source: result.source,
-            warning
-        })));
+            warning,
+        }))
+    );
 
-    const formattedResults = warnings.map(o => formatMessage(o.warning, o.source));
+    const formattedResults = warnings.map((o) =>
+        formatMessage(o.warning, o.source)
+    );
 
     return formattedResults.join(EOL);
 };

@@ -5,22 +5,31 @@ import formatMessage from '../src/formatMessage';
 const VSO_LOGISSUE_TASK_PREFIX = '##vso[task.logissue';
 
 const warning: Warning = {
-    line: 3, column: 12, endLine: 4, endColumn: 15, rule: 'block-no-empty', severity: 'warning',
-    text: 'You should not have an empty block (block-no-empty)'
+    line: 3,
+    column: 12,
+    endLine: 4,
+    endColumn: 15,
+    rule: 'block-no-empty',
+    severity: 'warning',
+    text: 'You should not have an empty block (block-no-empty)',
 };
 
 const error: Warning = {
-    line: 3, column: 12, endLine: 4, endColumn: 15, rule: 'block-no-empty', severity: 'error',
-    text: 'You should not have an empty block (block-no-empty)'
+    line: 3,
+    column: 12,
+    endLine: 4,
+    endColumn: 15,
+    rule: 'block-no-empty',
+    severity: 'error',
+    text: 'You should not have an empty block (block-no-empty)',
 };
 
 describe('FormatMessage', () => {
     it('should return expected message if no warning provided', () => {
-        const result = formatMessage((null as unknown) as Warning);
+        const result = formatMessage(null as unknown as Warning);
         expect(result).toBe(
-            VSO_LOGISSUE_TASK_PREFIX + ' '
-            + 'type=error' + ']'
-            + 'undefined');
+            VSO_LOGISSUE_TASK_PREFIX + ' ' + 'type=error' + ']' + 'undefined'
+        );
     });
 
     it('should return a string', () => {
@@ -30,7 +39,9 @@ describe('FormatMessage', () => {
 
     it('should start with VSO LogIssue task prefix', () => {
         const result = formatMessage(warning);
-        expect(result.length).toBeGreaterThanOrEqual(VSO_LOGISSUE_TASK_PREFIX.length);
+        expect(result.length).toBeGreaterThanOrEqual(
+            VSO_LOGISSUE_TASK_PREFIX.length
+        );
         expect(result.startsWith(VSO_LOGISSUE_TASK_PREFIX)).toBeTrue();
     });
 

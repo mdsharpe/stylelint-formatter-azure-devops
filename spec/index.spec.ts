@@ -3,21 +3,39 @@ import { type LinterResult, type LintResult } from 'stylelint';
 
 import formatter from '../src/index';
 
-const linterResult: LinterResult = { cwd: '', results: [], errored: false, output: null, reportedDisables: [], ruleMetadata: {} };
+const linterResult: LinterResult = {
+    cwd: '',
+    results: [],
+    errored: false,
+    output: null,
+    reportedDisables: [],
+    ruleMetadata: {},
+};
 
-const emptyResult: LintResult = { deprecations: [], invalidOptionWarnings: [], parseErrors: [], warnings: [] };
+const emptyResult: LintResult = {
+    deprecations: [],
+    invalidOptionWarnings: [],
+    parseErrors: [],
+    warnings: [],
+};
 
 const singleWarningResult: LintResult = {
-    deprecations: [], invalidOptionWarnings: [], parseErrors: [], warnings: [
-        { line: 1, column: 1, rule: 'rule', severity: 'error', text: 'lorem' }
-    ]
+    deprecations: [],
+    invalidOptionWarnings: [],
+    parseErrors: [],
+    warnings: [
+        { line: 1, column: 1, rule: 'rule', severity: 'error', text: 'lorem' },
+    ],
 };
 
 const twoWarningResult: LintResult = {
-    deprecations: [], invalidOptionWarnings: [], parseErrors: [], warnings: [
+    deprecations: [],
+    invalidOptionWarnings: [],
+    parseErrors: [],
+    warnings: [
         { line: 1, column: 1, rule: 'rule', severity: 'error', text: 'lorem' },
-        { line: 2, column: 1, rule: 'rule', severity: 'error', text: 'ipsum' }
-    ]
+        { line: 2, column: 1, rule: 'rule', severity: 'error', text: 'ipsum' },
+    ],
 };
 
 describe('Formatter', () => {
@@ -32,7 +50,10 @@ describe('Formatter', () => {
     });
 
     it('should return empty string for many empty results', () => {
-        const result = formatter([emptyResult, emptyResult, emptyResult], linterResult);
+        const result = formatter(
+            [emptyResult, emptyResult, emptyResult],
+            linterResult
+        );
         expect(result).toBe('');
     });
 
@@ -50,7 +71,10 @@ describe('Formatter', () => {
     });
 
     it('should return two lines for two results, two warnings', () => {
-        const result = formatter([singleWarningResult, singleWarningResult], linterResult);
+        const result = formatter(
+            [singleWarningResult, singleWarningResult],
+            linterResult
+        );
         const lineCount = result.split(EOL).length;
         expect(lineCount).toBe(2);
     });
@@ -62,7 +86,10 @@ describe('Formatter', () => {
     });
 
     it('should return three lines for two result, three warnings', () => {
-        const result = formatter([twoWarningResult, singleWarningResult], linterResult);
+        const result = formatter(
+            [twoWarningResult, singleWarningResult],
+            linterResult
+        );
         const lineCount = result.split(EOL).length;
         expect(lineCount).toBe(3);
     });

@@ -1,13 +1,17 @@
-import { type Warning } from "stylelint";
+import { type Warning } from 'stylelint';
 
-export default function formatMessage(warning: Warning, sourcePath?: string): string {
+export default function formatMessage(
+    warning: Warning,
+    sourcePath?: string
+): string {
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     warning = warning || {};
 
-    const severity = typeof warning.severity === 'string'
-        && warning.severity.toUpperCase() === 'WARNING'
-        ? 'warning'
-        : 'error';
+    const severity =
+        typeof warning.severity === 'string' &&
+        warning.severity.toUpperCase() === 'WARNING'
+            ? 'warning'
+            : 'error';
 
     const properties = [`type=${severity}`];
 
