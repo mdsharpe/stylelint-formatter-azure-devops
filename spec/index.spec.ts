@@ -1,46 +1,49 @@
+import { EOL } from 'os';
 import { LinterResult, LintResult } from 'stylelint';
 import formatter from '../src/index';
 
-const emptyResult: LintResult = {
-    deprecations: [],
-    invalidOptionWarnings: [],
-    parseErrors: [],
-    warnings: []
-};
+const linterResult: LinterResult = { cwd: '', results: [], errored: false, output: null, reportedDisables: [], ruleMetadata: {} };
 
-const linterResult: LinterResult = {
-    cwd: '',
-    results: [],
-    errored: false,
-    output: null,
-    reportedDisables: [],
-    ruleMetadata: {}
+const emptyResult: LintResult = { deprecations: [], invalidOptionWarnings: [], parseErrors: [], warnings: [] };
+
+const singleWarningResult: LintResult = {
+    deprecations: [], invalidOptionWarnings: [], parseErrors: [], warnings: [
+        { line: 1, column: 1, rule: 'rule', severity: 'error', text: 'lorem ipsum' }
+    ]
 };
 
 describe('Formatter', () => {
     it('should return empty string for no results', () => {
         const result = formatter([], linterResult);
-        expect(typeof result).toBe('string');
         expect(result).toBe('');
     });
 
-    it('should return a string', () => {
+    it('should return empty string for one empty result', () => {
         const result = formatter([emptyResult], linterResult);
-        expect(typeof result).toBe('string');
+        expect(result).toBe('');
     });
 
-    describe('returning a line per warning', () => {
-        it('should return 1 lines for 1 empty result', () => {
-            const result = formatter([emptyResult], linterResult);
-            const lineCount = result.split(/\r\n|\r|\n/).length;
-            expect(lineCount).toBe(2);
-        });
+    it('should return empty string for many empty results', () => {
+        const result = formatter([emptyResult, emptyResult, emptyResult], linterResult);
+        expect(result).toBe('');
+    });
 
-        it('should return two lines for two results', () => {
-            const result = formatter([emptyResult, emptyResult], linterResult);
-            const lineCount = result.split(/\r\n|\r|\n/).length;
-            expect(lineCount).toBe(2);
-        });
+    it('should return non empty string for a non empty results', () => {
+        const result = formatter([singleWarningResult], linterResult);
+        expect(typeof result).toBe('string');
+        expect(result.length).toBeGreaterThan(0);
+    });
 
+    it('should return one line for one result, one warning', () => {
+        const result = formatter([singleWarningResult], linterResult);
+        expect(result.length).toBeGreaterThan(0);
+        const lineCount = result.split(EOL).length;
+        expect(lineCount).toBe(1);
+    });
+
+    it('should return two lines for two results, two warnings', () => {
+        const result = formatter([singleWarningResult, singleWarningResult], linterResult);
+        const lineCount = result.split(EOL).length;
+        expect(lineCount).toBe(2);
     });
 });
