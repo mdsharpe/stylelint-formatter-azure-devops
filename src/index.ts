@@ -1,5 +1,6 @@
 import { EOL } from 'os';
 import { Formatter } from 'stylelint';
+import formatMessage from './formatMessage';
 
 const formatter: Formatter = (results, _): string => {
     if (!Array.isArray(results)) {
@@ -18,7 +19,7 @@ const formatter: Formatter = (results, _): string => {
             text: warning.text
         })));
 
-    const formattedResults = warnings.map(warning => 'lorem');
+    const formattedResults = warnings.map(warning => formatMessage());
 
     return formattedResults.join(EOL);
 };
