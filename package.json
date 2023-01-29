@@ -2,12 +2,17 @@
     "name": "stylelint-formatter-azure-devops",
     "version": "0.0.1",
     "description": "Stylelint formatter for Azure Devops",
-    "main": "lib/index.js",
+    "files": [
+        "lib/src/**/*.js"
+    ],
+    "main": "lib/src/index.js",
     "scripts": {
         "build": "tsc",
         "test": "jasmine",
         "lint": "eslint **/*.ts",
-        "prettier": "prettier --write ."
+        "prettier": "prettier --write .",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm test && npm run lint"
     },
     "repository": {
         "type": "git",
