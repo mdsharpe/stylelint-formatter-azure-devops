@@ -1,6 +1,6 @@
 import { type Warning } from 'stylelint';
 
-export default function formatMessage(
+module.exports = function formatMessage(
     warning: Warning,
     sourcePath?: string
 ): string {
@@ -32,4 +32,4 @@ export default function formatMessage(
     }
 
     return `##vso[task.logissue ${properties.join(';')}]${warning.text}`;
-}
+};

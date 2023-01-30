@@ -1,7 +1,7 @@
 import { EOL } from 'os';
 import { type LinterResult, type LintResult } from 'stylelint';
 
-import formatter from '../src/index';
+const formatter = require('../src/index');
 
 const linterResult: LinterResult = {
     cwd: '',
