@@ -1,6 +1,6 @@
 {
     "name": "stylelint-formatter-azure-devops",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Stylelint formatter for Azure Devops",
     "files": [
         "lib/src/**/*.js"
