@@ -1,7 +1,7 @@
-import { EOL } from 'os';
 import { type Formatter } from 'stylelint';
+import { EOL } from 'os';
 
-import formatMessage from './formatMessage';
+const formatMessage = require('./formatMessage');
 
 const formatter: Formatter = (results, _): string => {
     if (!Array.isArray(results) || results.length === 0) {
@@ -30,4 +30,4 @@ const formatter: Formatter = (results, _): string => {
     return formattedResults.join(EOL);
 };
 
-export default formatter;
+module.exports = formatter;
